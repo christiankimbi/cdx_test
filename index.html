@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neo Media | Content & Media Solutions</title>
+  <style>
+:root {
+  --bg: #1b1322;
+  --bg-soft: #2b1e35;
+  --ink: #f1e6d6;
+  --muted: #cfc1b0;
+  --accent: #9a4fa6;
+  --accent-2: #5b73c7;
+  --accent-3: #c38457;
+  --accent-4: #79b26a;
+  --card: #2a1a33;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(27, 19, 34, 0.95);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 6vw;
+  border-bottom: 1px solid rgba(241, 230, 214, 0.1);
+}
+
+.brand {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.35rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.brand-mark {
+  font-size: 1.8rem;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.brand-sub {
+  font-size: 1.1rem;
+  color: var(--accent);
+  text-transform: lowercase;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--muted);
+  color: var(--muted);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  color: var(--accent-2);
+}
+
+.hero {
+  min-height: 70vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: center;
+  gap: 2rem;
+  padding: 6rem 6vw 4rem;
+  background: radial-gradient(circle at top right, rgba(154, 79, 166, 0.35), transparent 55%),
+    radial-gradient(circle at 20% 20%, rgba(91, 115, 199, 0.4), transparent 45%),
+    var(--bg);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: 1rem;
+}
+
+.hero .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.hero-tag {
+  margin-top: 2rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.hero-art {
+  position: relative;
+  min-height: 280px;
+}
+
+.hero-circle,
+.hero-ring,
+.hero-triangle {
+  position: absolute;
+  border: 2px solid var(--muted);
+  opacity: 0.5;
+}
+
+.hero-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, rgba(91, 115, 199, 0.45), rgba(154, 79, 166, 0.2));
+}
+
+.hero-ring {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  top: 120px;
+  right: 30px;
+}
+
+.hero-triangle {
+  width: 0;
+  height: 0;
+  border-left: 80px solid transparent;
+  border-right: 80px solid transparent;
+  border-bottom: 140px solid rgba(241, 230, 214, 0.1);
+  top: 50px;
+  right: 90px;
+}
+
+.section {
+  padding: 4rem 6vw;
+}
+
+.section.alt {
+  background: var(--bg-soft);
+}
+
+.section-heading {
+  max-width: 640px;
+  margin-bottom: 2rem;
+}
+
+.section-heading h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.section-heading p {
+  color: var(--muted);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.card-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--muted);
+  color: var(--bg);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.section-footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.three-col {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.three-col article {
+  background: rgba(27, 19, 34, 0.7);
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(241, 230, 214, 0.08);
+}
+
+.pill {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--muted);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.three-col h3 {
+  margin-bottom: 1rem;
+}
+
+.three-col ul,
+.feature-list {
+  list-style: disc;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.split {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: center;
+}
+
+.lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+.flagship-panel {
+  background: linear-gradient(135deg, rgba(91, 115, 199, 0.3), rgba(154, 79, 166, 0.5));
+  padding: 2rem;
+  border-radius: 18px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.flagship-panel p {
+  margin-bottom: 0.6rem;
+}
+
+.flagship-title {
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+}
+
+.sponsor {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.note {
+  margin-top: 1.5rem;
+  color: var(--muted);
+}
+
+.why-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.why-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: var(--card);
+  padding: 1rem 1.5rem;
+  border-radius: 999px;
+}
+
+.why-item span {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--muted);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.why-item.accent {
+  background: rgba(154, 79, 166, 0.4);
+}
+
+.why-item.cool {
+  background: rgba(91, 115, 199, 0.4);
+}
+
+.why-item.warm {
+  background: rgba(121, 178, 106, 0.35);
+}
+
+.contact {
+  background: linear-gradient(135deg, rgba(91, 115, 199, 0.2), rgba(154, 79, 166, 0.2));
+}
+
+.contact-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 2rem;
+}
+
+.contact-card {
+  background: rgba(27, 19, 34, 0.75);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(241, 230, 214, 0.1);
+}
+
+.site-footer {
+  padding: 2rem 6vw 3rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+.site-footer a {
+  color: var(--muted);
+}
+
+@media (max-width: 800px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    right: 6vw;
+    background: var(--bg-soft);
+    padding: 1rem;
+    border-radius: 12px;
+    flex-direction: column;
+    gap: 0.8rem;
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="brand">
+      <span class="brand-mark">neo</span>
+      <span class="brand-sub">media</span>
+    </div>
+    <nav class="nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#who">Who Are We</a>
+        <a href="#what">What We Do</a>
+        <a href="#flagship">Flagship Show</a>
+        <a href="#where">Where We Work</a>
+        <a href="#why">Why Neo Media</a>
+        <a href="#contact">Let’s Talk</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Your Partner in</p>
+        <h1>Content &amp; Media Solutions</h1>
+        <p class="hero-tag">Serving Francophone Africa</p>
+      </div>
+      <div class="hero-art">
+        <div class="hero-circle"></div>
+        <div class="hero-ring"></div>
+        <div class="hero-triangle"></div>
+      </div>
+    </section>
+
+    <section class="section" id="who">
+      <div class="section-heading">
+        <h2>WHO ARE WE</h2>
+        <p>Neo Media is a full-service media agency specializing in:</p>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-number">1</span>
+          <h3>Creating and producing original content for TV and radio</h3>
+        </article>
+        <article class="card">
+          <span class="card-number">2</span>
+          <h3>Buying and selling broadcast content across Africa</h3>
+        </article>
+        <article class="card">
+          <span class="card-number">3</span>
+          <h3>Media strategy and buying services for diverse clients</h3>
+        </article>
+      </div>
+      <p class="section-footer">We work with both B2B and B2C clients to deliver measurable impact</p>
+    </section>
+
+    <section class="section alt" id="what">
+      <div class="section-heading">
+        <h2>WHAT WE DO</h2>
+      </div>
+      <div class="three-col">
+        <article>
+          <div class="pill">1</div>
+          <h3>Content Creation &amp; Production</h3>
+          <ul>
+            <li>TV Shows, Documentaries, Radio Programs, Commercials</li>
+            <li>Tailored storytelling for Francophone audiences</li>
+          </ul>
+        </article>
+        <article>
+          <div class="pill">2</div>
+          <h3>Content Acquisition &amp; Sales</h3>
+          <ul>
+            <li>Representing quality content to TV and radio stations</li>
+            <li>Facilitating rights and licensing deals</li>
+          </ul>
+        </article>
+        <article>
+          <div class="pill">3</div>
+          <h3>Media Strategy &amp; Buying</h3>
+          <ul>
+            <li>End-to-end media planning and buying</li>
+            <li>Optimized media placement for maximum ROI</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="flagship">
+      <div class="split">
+        <div>
+          <h2>OUR FLAGSHIP RADIO SHOW: INFO TRAFIC</h2>
+          <p class="lead">
+            Our first popular radio content production, Info Trafic, has earned a strong and loyal audience base in Kinshasa. The program:
+          </p>
+          <ul class="feature-list">
+            <li>Delivers real-time traffic updates and suggests alternative routes</li>
+            <li>Highlights major traffic issues affecting urban mobility</li>
+            <li>Educates listeners on road safety, etiquette, and regulations</li>
+          </ul>
+          <p class="note">Info Trafic is a trusted voice in daily commutes and a key public education platform</p>
+        </div>
+        <div class="flagship-panel">
+          <p>Lundi - Vendredi</p>
+          <p>na 7h, 12h pe 17h</p>
+          <p class="flagship-title">89.0 MHZ</p>
+          <p>To Lobela ngo na TRAFIC INFO</p>
+          <p>Oktani na probleme ya circulation?</p>
+          <p>Benga biso na +243 85 72 922 92</p>
+          <p class="sponsor">Sponsorisé par YANGO</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="where">
+      <div class="section-heading">
+        <h2>WHERE WE WORK</h2>
+      </div>
+      <div class="split">
+        <p class="lead">
+          Headquartered in the Democratic Republic of Congo, with active operations across:
+        </p>
+        <ul class="feature-list">
+          <li>Côte d’Ivoire</li>
+          <li>Senegal</li>
+          <li>Cameroon</li>
+          <li>And other French-speaking countries in Africa</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="section-heading">
+        <h2>Why Choose Neo Media</h2>
+      </div>
+      <div class="why-list">
+        <div class="why-item">
+          <span>1</span>
+          <p>Deep knowledge of the Francophone media landscape</p>
+        </div>
+        <div class="why-item accent">
+          <span>2</span>
+          <p>Strong relationships with broadcasters and platforms</p>
+        </div>
+        <div class="why-item cool">
+          <span>3</span>
+          <p>Agile, creative, and results-driven</p>
+        </div>
+        <div class="why-item warm">
+          <span>4</span>
+          <p>Committed to client satisfaction and long-term growth</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="section-heading">
+        <h2>Let’s Talk</h2>
+        <p>Connect with us to discover how Neo Media can amplify your media presence.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Contact</h3>
+          <p>info@neomedia.africa</p>
+          <p>+243 81 606 1697 / +27 62 696 2648</p>
+          <p>www.neomedia.africa</p>
+        </div>
+        <div class="contact-card">
+          <h3>Address</h3>
+          <p>3ème Étage Immeuble Paradizio</p>
+          <p>(En Face du Golf)</p>
+          <p>90 A Blvd 30 Juin, Gombe,</p>
+          <p>Kinshasa, RD Congo</p>
+        </div>
+      </div>
+      <p class="section-footer">Neo Media: Powering Francophone Africa’s Media Ecosystem</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="#top">Back to top</a>
+  </footer>
+
+  <script>
+const toggle = document.querySelector('.nav-toggle');
+const links = document.querySelector('.nav-links');
+
+if (toggle && links) {
+  toggle.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+}
+  </script>
+</body>
+</html>
